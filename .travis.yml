@@ -1,0 +1,26 @@
+language: python
+python:
+  - "3.8"
+
+before_install:
+  - sudo apt-get update
+  - sudo apt-get install -y python3-pip
+  - pip3 install buildozer
+  - sudo apt-get install -y \
+      python3-setuptools \
+      libssl-dev \
+      cython3 \
+      zlib1g-dev \
+      libltdl-dev \
+      libffi-dev \
+      openjdk-8-jdk
+
+install:
+  - buildozer init
+  - buildozer -v android debug
+
+script:
+  - echo "APK build completed"
+
+after_success:
+  - echo "APK file is ready for distribution"
